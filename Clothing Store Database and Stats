@@ -1,0 +1,21 @@
+To create a clothing store data base below
+
+CREATE TABLE Clothing_Store (id INTEGER PRIMARY KEY, name Text, quantity INTEGER, location text, price INTEGER);
+
+INSERT INTO Clothing_Store VALUEs
+(1000, "T Shirt", 50, "Online", 10.99),
+(1001, "V Neck", 50, "Online", 11.99),
+(1002, "Jeans", 15, "In Store", 24.99),
+(1003, "Shorts", 20, "In Store", 15.99),
+(1004, "Leggings", 50, "Online", 12.99),
+(1005, "Long Sleeve", 25, "In Store", 13.99)
+;
+
+To display database ordered by price below
+SELECT * FROM Clothing_Store
+ORDER BY price asc;
+
+What is the average price of items in In Store? below
+SELECT AVG(price) "avg In Store price"
+FROM Clothing_Store
+where location='In Store';
