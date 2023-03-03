@@ -1,0 +1,41 @@
+CREATE TABLE actors (id INTEGER PRIMARY KEY, 
+    full_name TEXT,
+    age INTEGER);
+
+INSERT INTO actors (full_name, age) VALUES ("Steve Carell", "60");
+INSERT INTO actors (full_name, age) VALUES ("John Krasinski", "43");
+INSERT INTO actors (full_name, age) VALUES ("Adam Scott", "49");
+INSERT INTO actors (full_name, age) VALUES ("Will Ferrell", "55");
+INSERT INTO actors (full_name, age) VALUES ("Chris Pratt", "44");
+INSERT INTO actors (full_name, age) VALUES ("Melissa McCarthy", "53");
+INSERT INTO actors (full_name, age) VALUES ("Amy Poehler", "52");
+INSERT INTO actors (full_name, age) VALUES ("Kristen Wiig", "50");
+
+CREATE TABLE movies (id INTEGER PRIMARY KEY,
+    full_name TEXT,
+    actor_id INTEGER,
+    film_title TEXT);
+    
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Steve Carell", "1", "The Office");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("John Krasinski", "2", "The Office");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Adam Scott", "3", "Step Brothers");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Will Ferrell", "4", "Step Brothers");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Chris Pratt", "5", "Parks and Rec");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Melissa McCarthy", "6", "Bridesmaids");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Amy Poehler", "7", "Parks and Rec");
+INSERT INTO movies (full_name, actor_id, film_title) VALUES ("Kristen Wiig", "8", "Bridesmaids");
+
+SELECT actors.full_name, movies.film_title as main_film
+    FROM actors
+    LEFT OUTER JOIN movies
+    ON actors.id = movies.actor_id;    
+
+SELECT a.id, a.full_name, b.film_title AS "Show or Movie Title"
+FROM actors
+JOIN movies a
+ON actors.id = a.id
+JOIN movies b
+ON actors.id = b.id
+GROUP BY "Show or Movie Title"
+ORDER BY "Show or Movie Title" ASC
+;
