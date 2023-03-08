@@ -27,5 +27,41 @@ time_signature integer NOT NULL
 
 After, I inserted the Spotify data from .csv file into the table I created.
 
-Once everything was transferred, I then was able to explore the data using the following SQL:
+Once everything was transferred, I then was able to explore the data and query results for the following:
 
+Who are the Top 10 artists? To be grouped by popularity.
+
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 10
+
+What is the average popularity, danceability, and energy sorted by artist and track.
+
+SELECT
+artist_name,
+track_name,
+avg(popularity),
+avg(danceability),
+avg(energy)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name, track_name
+
+Which artist released the longest track?
+
+SELECT
+artist_name, 
+track_name,
+duration_ms
+FROM BIT_DB.spotifydata
+ORDER BY duration_ms DESC
+LIMIT 1
+
+How many of the songs on the playlist are by the same artist?
+
+SELECT distinct artist_name, 
+COUNT(track_name) AS total_tracks
+FROM BIT_DB.SpotifyData
+GROUP BY artist_name
+HAVING total_tracks >= 1
+ORDER BY total_tracks DESC
